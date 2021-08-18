@@ -22,9 +22,9 @@ class Task extends Model
         'difficulty_id'
     ];
 
-    public function check()
+    public function achievements()
     {
-        return $this->hasMany(Check::class);
+        return $this->hasMany(Achievement::class);
     }
 
     public function difficulty()

@@ -22,7 +22,25 @@ class UserVoteSeeder extends Seeder
              'password' => 'yumemitaro'], 1],
              [['user_name' => 'Yumemi Hanako',
              'email' => 'yumemihanako@yumimi.co.jp',
-             'password' => 'yumemihanako'], 3]
+             'password' => 'yumemihanako'], 3],
+             [['user_name' => 'Yumemi Ichiro',
+             'email' => 'yumemiichiro@yumimi.co.jp',
+             'password' => 'yumemiichiro'], 2],
+             [['user_name' => 'Yumemi Jiro',
+             'email' => 'yumemijiro@yumimi.co.jp',
+             'password' => 'yumemijiro'], 3],
+             [['user_name' => 'Yumemi Saburo',
+             'email' => 'yumemisaburo@yumimi.co.jp',
+             'password' => 'yumemisaburo'], 1],
+             [['user_name' => 'Alice Yumemi',
+             'email' => 'aliceyumemi@yumimi.co.jp',
+             'password' => 'aliceyumemi'], 5],
+             [['user_name' => 'Bob Yumemi',
+             'email' => 'bobyumemi@yumimi.co.jp',
+             'password' => 'bobyumemi'], 4],
+             [['user_name' => 'Carol Yumemi',
+             'email' => 'carolyumemi@yumimi.co.jp',
+             'password' => 'carolyumemi'], 3]
         ];
     
         foreach($user_vote as $data) {

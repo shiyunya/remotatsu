@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(GenreSeeder::class);
         $this->call(DifficultySeeder::class);
         $this->call(TaskSeeder::class);
-        $this->call(CheckSeeder::class);
+        $this->call(AchievementSeeder::class);
         //$this->call(VoteSeeder::class);
     }
 }

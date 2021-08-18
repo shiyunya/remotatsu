@@ -19,7 +19,7 @@ class Difficulty extends Model
         'difficulty_name'
     ];
 
-    public function task(){
+    public function tasks(){
         return $this->hasMany(Task::class);
     }
 }

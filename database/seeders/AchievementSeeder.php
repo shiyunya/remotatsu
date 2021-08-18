@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Achievement;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB; 
-use App\Models\Check;
 
-class CheckSeeder extends Seeder
+class AchievementSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,15 +14,13 @@ class CheckSeeder extends Seeder
      */
     public function run()
     {
-        //
-        DB::table('checks')->delete();
-        $checks = [
+        $achievements = [
             ['user_id' => 1,
              'task_id' => 1]
         ];
 
-        foreach($checks as $check) {
-            Check::create($check);
+        foreach($achievements as $achievement) {
+            Achievement::create($achievement);
         }
     }
 }
