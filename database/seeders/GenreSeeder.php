@@ -21,7 +21,13 @@ class GenreSeeder extends Seeder
         DB::table('genres')->delete();
         $genres = [
             ['genre_name' => 'リモートワークツール利用'],
-            ['genre_name' => '環境デザイン']
+            ['genre_name' => '環境デザイン'],
+            ['genre_name' => 'フィードバック'],
+            ['genre_name' => '生活習慣・食習慣'],
+            ['genre_name' => 'アクティブレスト・運動習慣'],
+            ['genre_name' => '睡眠'],
+            ['genre_name' => 'ワークハックマスター'],
+            ['genre_name' => '思考習慣']
         ];
 
         foreach($genres as $genre) {

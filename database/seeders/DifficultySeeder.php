@@ -19,8 +19,9 @@ class DifficultySeeder extends Seeder
         
         DB::table('difficulties')->delete();
         $difficulties = [
-            ['difficulty_name' => 'リモートワークツール利用'],
-            ['difficulty_name' => '環境デザイン']
+            ['difficulty_name' => '初級'],
+            ['difficulty_name' => '中級'],
+            ['difficulty_name' => '上級']
         ];
 
         foreach($difficulties as $difficulty) {
