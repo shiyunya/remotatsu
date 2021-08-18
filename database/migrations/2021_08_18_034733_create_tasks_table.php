@@ -14,13 +14,13 @@ class CreateTasksTable extends Migration
     public function up()
     {
         Schema::create('tasks', function (Blueprint $table) {
-            $table->increments("task_id");
+            $table->id();
             $table->string("task_name");
             $table->string("discription");
-            $table->unsignedInteger('genre_id');
-            $table->foreign('genre_id')->references('genre_id')->on('genres');
-            $table->unsignedInteger('difficulty_id');
-            $table->foreign('difficulty_id')->references('difficulty_id')->on('difficulties');
+            $table->unsignedBigInteger('genre_id');
+            $table->foreign('genre_id')->references('id')->on('genres');
+            $table->unsignedBigInteger('difficulty_id');
+            $table->foreign('difficulty_id')->references('id')->on('difficulties');
         });
     }
 

@@ -14,7 +14,7 @@ class CreateDifficultiesTable extends Migration
     public function up()
     {
         Schema::create('difficulties', function (Blueprint $table) {
-            $table->increments("difficulty_id");
+            $table->id();
             $table->string("difficultiy_name");
         });
     }

@@ -15,9 +15,9 @@ class CreateChecksTable extends Migration
     {
         Schema::create('checks', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('user_id')->on('users');
-            $table->unsignedInteger('task_id');
-            $table->foreign('task_id')->references('task_id')->on('tasks');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('task_id');
+            $table->foreign('task_id')->references('id')->on('tasks');
 
             $table->primary(['user_id', 'task_id'],'user_task_id');
         });
