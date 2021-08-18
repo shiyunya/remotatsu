@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Vote;
 use App\Models\User;
 
-class VoteSeeder extends Seeder
+class UserVoteSeeder extends Seeder
 {
     /**
      * Run the database seeds.
