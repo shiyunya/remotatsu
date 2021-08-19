@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
+use App\Models\Task;
 use App\Models\Achievement;
 use Illuminate\Database\Seeder;
 
@@ -14,13 +16,16 @@ class AchievementSeeder extends Seeder
      */
     public function run()
     {
-        $achievements = [
-            ['user_id' => 1,
-             'task_id' => 1]
-        ];
+        $users = User::all();
+        $tasks = Task::all();
 
-        foreach($achievements as $achievement) {
-            Achievement::create($achievement);
+        foreach($users as $user){
+            foreach($tasks as $task){
+                if (rand() % 2 == 0){
+                    $user->achievements()->create(['task_id' => $task->id]);
+                }
+            }
         }
+
     }
 }
