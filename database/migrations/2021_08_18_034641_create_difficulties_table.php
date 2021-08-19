@@ -15,7 +15,7 @@ class CreateDifficultiesTable extends Migration
     {
         Schema::create('difficulties', function (Blueprint $table) {
             $table->id();
-            $table->string("difficultiy_name");
+            $table->string("difficulty_name");
         });
     }
 

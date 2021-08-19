@@ -17,8 +17,9 @@ class CreateVotesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger("voted_number");
-
-            $table->primary(['user_id'],'user_id');
+            $table->timestamps();
+            
+            $table->primary(['user_id'],'id');
         });
     }
 
