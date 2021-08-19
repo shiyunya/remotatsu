@@ -24,3 +24,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/login', [LoginController::class, 'login']);
 Route::middleware('auth:sanctum')->get('/tasks', [TaskController::class, 'getTasks']);
+Route::middleware('auth:sanctum')->put('/tasks', [TaskController::class, 'putTasks']);
