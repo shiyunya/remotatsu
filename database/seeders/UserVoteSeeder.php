@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB; 
 use App\Models\Vote;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserVoteSeeder extends Seeder
 {
@@ -16,36 +17,42 @@ class UserVoteSeeder extends Seeder
      */
     public function run()
     {
+        $admin = ['user_name' => 'admin', 'email' => 'admin', 'password' => Hash::make('admin')];
+        
         $user_vote = [
             [['user_name' => 'Yumemi Taro',
-             'email' => 'yumemitaro@yumimi.co.jp',
-             'password' => 'yumemitaro'], 1],
+             'email' => 'yumemitaro@yumemi.co.jp',
+             'password' => 'yumemi'], 1],
              [['user_name' => 'Yumemi Hanako',
-             'email' => 'yumemihanako@yumimi.co.jp',
-             'password' => 'yumemihanako'], 3],
+             'email' => 'yumemihanako@yumemi.co.jp',
+             'password' => 'yumemi'], 3],
              [['user_name' => 'Yumemi Ichiro',
-             'email' => 'yumemiichiro@yumimi.co.jp',
-             'password' => 'yumemiichiro'], 2],
+             'email' => 'yumemiichiro@yumemi.co.jp',
+             'password' => 'yumemi'], 2],
              [['user_name' => 'Yumemi Jiro',
-             'email' => 'yumemijiro@yumimi.co.jp',
-             'password' => 'yumemijiro'], 3],
+             'email' => 'yumemijiro@yumemi.co.jp',
+             'password' => 'yumemi'], 3],
              [['user_name' => 'Yumemi Saburo',
-             'email' => 'yumemisaburo@yumimi.co.jp',
-             'password' => 'yumemisaburo'], 1],
+             'email' => 'yumemisaburo@yumemi.co.jp',
+             'password' => 'yumemi'], 1],
              [['user_name' => 'Alice Yumemi',
-             'email' => 'aliceyumemi@yumimi.co.jp',
-             'password' => 'aliceyumemi'], 5],
+             'email' => 'aliceyumemi@yumemi.co.jp',
+             'password' => 'yumemi'], 5],
              [['user_name' => 'Bob Yumemi',
-             'email' => 'bobyumemi@yumimi.co.jp',
-             'password' => 'bobyumemi'], 4],
+             'email' => 'bobyumemi@yumemi.co.jp',
+             'password' => 'yumemi'], 4],
              [['user_name' => 'Carol Yumemi',
-             'email' => 'carolyumemi@yumimi.co.jp',
-             'password' => 'carolyumemi'], 3]
+             'email' => 'carolyumemi@yumemi.co.jp',
+             'password' => 'yumemi'], 3]
         ];
-    
+
+        User::create($admin);
+
         foreach($user_vote as $data) {
+            $data[0]['password'] = Hash::make($data[0]['password']);
             $new_user = User::create($data[0]);
             $new_user->vote()->create(['voted_number' => $data[1]]);
         }
+
     }
 }
