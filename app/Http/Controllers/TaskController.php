@@ -27,24 +27,4 @@ class TaskController extends Controller
         $tasks = DB::select($SQL);
         return $tasks;
     }
-
-    public function putTasks(Request $request){
-        $user_id = $request->user()->id;
-        $task_achieves = $request->task_achieve;
-
-        DB::beginTransaction();
-        try {
-            Achievement::where('user_id', $user_id)->delete();
-            foreach($task_achieves as $task_achieve){
-                if ($task_achieve['is_achieve'] == 1){
-                    Achievement::create(['user_id' => $user_id, 'task_id' => $task_achieve['id']]);
-                }
-            }
-            DB::commit();
-            return Response::HTTP_OK;
-        } catch (\Exception $e) {
-            DB::rollback();
-            return Response::HTTP_INTERNAL_SERVER_ERROR;
-        }
-    }
 }
