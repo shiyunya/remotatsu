@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 use function PHPUnit\Framework\isEmpty;
 
-const MIN_ACHIEVEMENTS = 1;//5;
+const MIN_ACHIEVEMENTS = 15;
 
 class LotteryController extends Controller
 {
@@ -26,6 +26,7 @@ class LotteryController extends Controller
             "is_voted" => $is_voted
         ], Response::HTTP_OK);
     }
+
     public function vote(Request $request){
         $user = $request->user();
         $user_id = $user->id;
@@ -52,6 +53,7 @@ class LotteryController extends Controller
             return response()->json(['message' => 'Error occured'], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
     public function get_winner(Request $request){
         $user = $request->user();
 
