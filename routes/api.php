@@ -27,3 +27,5 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::middleware('auth:sanctum')->get('/tasks', [TaskController::class, 'getTasks']);
 Route::middleware('auth:sanctum')->put('/achievements', [AchievementController::class, 'putAchievements']);
 Route::middleware('auth:sanctum')->get('/user/lottery', [LotteryController::class, 'user_status']);
+Route::middleware('auth:sanctum')->post('/vote', [LotteryController::class, 'vote']);
+Route::middleware('auth:sanctum')->get('/winner', [LotteryController::class, 'get_winner']);
