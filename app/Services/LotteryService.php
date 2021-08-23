@@ -10,7 +10,7 @@ const MIN_ACHIEVEMENTS = 15;
 class LotteryService{
 
     public function is_admin($user){
-        return $user->is_admin == 1;
+        return $user->is_admin;
     }
 
     public function is_voted($user){
