@@ -15,8 +15,6 @@ class DifficultySeeder extends Seeder
      */
     public function run()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        
         DB::table('difficulties')->delete();
         $difficulties = [
             ['difficulty_name' => '初級'],
@@ -24,8 +22,7 @@ class DifficultySeeder extends Seeder
             ['difficulty_name' => '上級']
         ];
 
-        foreach($difficulties as $difficulty) {
-            Difficulty::create($difficulty);
-        }
+        DB::table('difficulties')->insert($difficulties);
+        
     }
 }

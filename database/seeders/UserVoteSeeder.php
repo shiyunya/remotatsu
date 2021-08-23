@@ -17,7 +17,7 @@ class UserVoteSeeder extends Seeder
      */
     public function run()
     {
-        $admin = ['user_name' => 'admin', 'email' => 'admin', 'password' => Hash::make('admin')];
+        $admin = ['user_name' => 'admin', 'email' => 'admin@yumemi.co.jp', 'password' => Hash::make('admin'), 'is_admin' => 1];
         
         $user_vote = [
             [['user_name' => 'Yumemi Taro',
