@@ -20,6 +20,9 @@ class AchievementSeeder extends Seeder
         $tasks = Task::all();
 
         foreach($users as $user){
+            if ($user->id == 1){
+                continue;
+            }
             foreach($tasks as $task){
                 if (rand() % 2 == 0){
                     $user->achievements()->create(['task_id' => $task->id]);

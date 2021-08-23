@@ -16,8 +16,6 @@ class GenreSeeder extends Seeder
 
     public function run()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        
         DB::table('genres')->delete();
         $genres = [
             ['genre_name' => 'リモートワークツール利用'],
@@ -30,8 +28,6 @@ class GenreSeeder extends Seeder
             ['genre_name' => '思考習慣']
         ];
 
-        foreach($genres as $genre) {
-            Genre::create($genre);
-        }
+        DB::table('genres')->insert($genres);
     }
 }
