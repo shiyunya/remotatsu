@@ -25,4 +25,16 @@ class TaskService{
         return $tasks;
     }
 
+    public function postTask($task_name, $description, $genre_id, $difficulty_id){
+
+        $value = [
+            "task_name" => $task_name,
+            "description" => $description,
+            "genre_id" => $genre_id,
+            "difficulty_id" => $difficulty_id
+        ];
+        Task::create($value);
+
+    }
+
 }
