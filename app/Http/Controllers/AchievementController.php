@@ -5,30 +5,32 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB; 
 use Symfony\Component\HttpFoundation\Response;
-use App\Models\Achievement;
+use App\Services\AchievementService;
 
 class AchievementController extends Controller
 {
+    private $achievementService;
+
+    public function __construct(AchievementService $achievementService)
+    {
+        $this->achievementService = $achievementService;
+    }
+
     public function putAchievements(Request $request){
         $user_id = $request->user()->id;
         $task_ids = $request->task_ids;
         
-        $values = array();
-        foreach($task_ids as $task_id){
-            $values[] = ['user_id' => $user_id, 'task_id' => $task_id];
-        }
-        
         DB::beginTransaction();
         try {
-            Achievement::where('user_id', $user_id)->delete();
-            DB::table('achievements')->insert($values);
+            $this->achievementService->putAchievements($user_id, $task_ids);
             DB::commit();
+            
+            return response()->json(["message" => "OK"], Response::HTTP_OK);
 
-            return Response::HTTP_OK;
         } catch (\Exception $e) {
             DB::rollback();
 
-            return Response::HTTP_INTERNAL_SERVER_ERROR;
+            return response()->json(["message" => "Error occured"], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 }
