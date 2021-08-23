@@ -28,9 +28,10 @@ class AchievementController extends Controller
             return response()->json(["message" => "OK"], Response::HTTP_OK);
 
         } catch (\Exception $e) {
+            
             DB::rollback();
-
             return response()->json(["message" => "Error occured"], Response::HTTP_INTERNAL_SERVER_ERROR);
+
         }
     }
 }

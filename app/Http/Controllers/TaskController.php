@@ -26,9 +26,10 @@ class TaskController extends Controller
             return response()->json($tasks, Response::HTTP_OK);
 
         } catch (\Exception $e) {
+
             DB::rollback();
-            
             return response()->json(["message" => "Error occured"], Response::HTTP_INTERNAL_SERVER_ERROR);
+            
         }
     }
 }

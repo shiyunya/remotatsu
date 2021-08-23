@@ -95,13 +95,15 @@ class LotteryController extends Controller
 
             $win_number = $win_vote->voted_number;
             $winner_id = $this->lotteryService->winner_id($win_number);
-            
+
+            DB::commit();
             return response()->json(['user_id' => $winner_id, 'win_number' => $win_number], Response::HTTP_OK);
 
         } catch (\Exception $e) {
 
             DB::rollback();
             return response()->json(['message' => 'Error occured'], Response::HTTP_INTERNAL_SERVER_ERROR);
+            
         }
     }
 }
