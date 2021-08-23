@@ -6,7 +6,7 @@ use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\AchievementController;
-
+use App\Http\Controllers\LotteryController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,3 +26,6 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/login', [LoginController::class, 'login']);
 Route::middleware('auth:sanctum')->get('/tasks', [TaskController::class, 'getTasks']);
 Route::middleware('auth:sanctum')->put('/achievements', [AchievementController::class, 'putAchievements']);
+Route::middleware('auth:sanctum')->get('/user/lottery', [LotteryController::class, 'user_status']);
+Route::middleware('auth:sanctum')->post('/vote', [LotteryController::class, 'vote']);
+Route::middleware('auth:sanctum')->get('/winner', [LotteryController::class, 'get_winner']);

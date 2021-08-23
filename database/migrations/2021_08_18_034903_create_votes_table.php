@@ -19,7 +19,7 @@ class CreateVotesTable extends Migration
             $table->unsignedBigInteger("voted_number");
             $table->timestamps();
             
-            $table->primary(['user_id'],'id');
+            $table->primary(['user_id'],'user_id');
         });
     }
 
