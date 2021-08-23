@@ -8,6 +8,7 @@ use PhpParser\Node\Expr\FuncCall;
 use Illuminate\Support\Facades\DB; 
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Request;
+use App\Http\Requests\VoteRequest;
 
 use function PHPUnit\Framework\isEmpty;
 
@@ -27,7 +28,7 @@ class LotteryController extends Controller
         ], Response::HTTP_OK);
     }
 
-    public function vote(Request $request){
+    public function vote(VoteRequest $request){
         $user = $request->user();
         $user_id = $user->id;
 

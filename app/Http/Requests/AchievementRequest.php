@@ -7,19 +7,19 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Symfony\Component\HttpFoundation\Response;
 
-class LoginRequest extends FormRequest{
+class AchievementRequest extends FormRequest{
     public function authorize(){
         return true;
     }
 
     public function rules(){
         return [
-            'email' => 'required|email|max::255',
-            'password' => 'required|max::255'
+            'task_ids' => 'required',
+            'task_ids.*' => 'required|integer|distinct|min:1',
         ];
     }
 
-    protected function failedValidation(Validator $validator) {
+    public function failedValidation(Validator $validator){
         $res = response()->json([
             'status' => Response::HTTP_BAD_REQUEST,
             'errors' => $validator->errors(),
