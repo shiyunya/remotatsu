@@ -7,19 +7,18 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Symfony\Component\HttpFoundation\Response;
 
-class LoginRequest extends FormRequest{
+class VoteRequest extends FormRequest{
     public function authorize(){
         return true;
     }
 
     public function rules(){
         return [
-            'email' => 'required|email|max::255',
-            'password' => 'required|max::255'
+            'voted_number' => 'required|integer|min:1',
         ];
     }
 
-    protected function failedValidation(Validator $validator) {
+    public function failedValidation(Validator $validator){
         $res = response()->json([
             'status' => Response::HTTP_BAD_REQUEST,
             'errors' => $validator->errors(),

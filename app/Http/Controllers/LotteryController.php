@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Vote;
 use App\Models\Achievement;
 use App\Services\LotteryService;
+use App\Http\Requests\VoteRequest;
 
 const MIN_ACHIEVEMENTS = 15;
 
@@ -44,7 +45,7 @@ class LotteryController extends Controller
         }
     }
 
-    public function vote(Request $request){
+    public function vote(VoteRequest $request){
         $user = $request->user();
         $voted_number = $request->voted_number;
 

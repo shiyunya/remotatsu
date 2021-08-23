@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB; 
 use Symfony\Component\HttpFoundation\Response;
+use App\Models\Achievement;
+use App\Http\Requests\AchievementRequest;
 use App\Services\AchievementService;
 
 class AchievementController extends Controller
@@ -15,8 +17,9 @@ class AchievementController extends Controller
     {
         $this->achievementService = $achievementService;
     }
-
-    public function putAchievements(Request $request){
+  
+    public function putAchievements(AchievementRequest $request){
+      
         $user_id = $request->user()->id;
         $task_ids = $request->task_ids;
         
