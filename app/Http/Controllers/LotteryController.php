@@ -52,22 +52,30 @@ class LotteryController extends Controller
         DB::beginTransaction();
         try {
 
-            if ($this->lotteryService->is_admin($user)){
-                DB::commit();
-                return response()->json(['message' => 'Admin can not vote'], Response::HTTP_BAD_REQUEST);
-            }
-            if ($this->lotteryService->is_voted($user)){
-                DB::commit();
-                return response()->json(['message' => 'Already voted'], Response::HTTP_BAD_REQUEST);
-            }
-            if ($this->lotteryService->achievements_count($user) < MIN_ACHIEVEMENTS){
-                DB::commit();
-                return response()->json(['message' => 'Achievements is not enough'], Response::HTTP_BAD_REQUEST);
+            // if ($this->lotteryService->is_admin($user)){
+            //     DB::commit();
+            //     return response()->json(['message' => 'Admin can not vote'], Response::HTTP_BAD_REQUEST);
+            // }
+            // if ($this->lotteryService->is_voted($user)){
+            //     DB::commit();
+            //     return response()->json(['message' => 'Already voted'], Response::HTTP_BAD_REQUEST);
+            // }
+            // if ($this->lotteryService->achievements_count($user) < MIN_ACHIEVEMENTS){
+            //     DB::commit();
+            //     return response()->json(['message' => 'Achievements is not enough'], Response::HTTP_BAD_REQUEST);
+            // 
+
+            $message = $this->lotteryService->can_vote($user);
+            $http_status = Response::HTTP_OK;
+            return $message;
+            if ($message == "OK"){
+                $this->lotteryService->vote($user, $voted_number);
+            }else{
+                $http_status = Response::HTTP_BAD_REQUEST;
             }
 
-            $this->lotteryService->vote($user, $voted_number);
             DB::commit();
-            return response()->json(['message' => 'OK'], Response::HTTP_OK);
+            return response()->json(['message' => $message], $http_status);
 
         } catch (\Exception $e) {
 

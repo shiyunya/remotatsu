@@ -15,9 +15,14 @@ class TaskSeeder extends Seeder
      */
     public function run()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        
-        DB::table('tasks')->delete();
+        $negatives = [
+
+            ['task_name' => '感情的になって暴言・暴力的な発言を会議やSlackで行った',
+            'is_negative' => true],
+            ['task_name' => '事実の有無に関わらず、社員の社内評価を下げるような発言を会議やSlackで行った',
+            'is_negative' => true]
+        ];
+
         $tasks = [
             ['task_name' => '下記のSlackの基本的な使い方を実施している',
              'description' => "- 無闇に＠hereや@channelを使わないでユーザーグループをメンションとして使う配慮ができている¥n"
@@ -127,6 +132,7 @@ class TaskSeeder extends Seeder
             'difficulty_id' => 3]
         ];
 
-        DB::table('tasks')->insert($tasks);
+        Task::insert($negatives);
+        Task::insert($tasks);
     }
 }

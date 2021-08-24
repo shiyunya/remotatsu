@@ -50,5 +50,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(Vote::class);
     }
+
+    public function tasks()
+    {
+        return $this->hasManyThrough(Task::class, Achievement::class, 'user_id', 'task_id');
+    }
     
 }
