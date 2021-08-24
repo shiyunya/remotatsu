@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 use App\Services\TaskService;
 use App\Services\LotteryService;
+use App\Http\Requests\TaskRequest;
 
 class TaskController extends Controller
 {
@@ -37,7 +38,7 @@ class TaskController extends Controller
         }
     }
 
-    public function postTask(Request $request){
+    public function postTask(TaskRequest $request){
         $user = $request->user();
         $task_name = $request->task_name;
         $description = $request->description;
