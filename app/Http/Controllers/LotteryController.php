@@ -28,13 +28,15 @@ class LotteryController extends Controller
         try {
             $is_admin = $this->lotteryService->is_admin($user);
             $is_voted = $this->lotteryService->is_voted($user);
+            $has_negative = $this->lotteryService->has_negative($user);
             $can_vote = $this->lotteryService->can_vote($user);
             DB::commit();
 
             return response()->json([
                 'is_admin' => $is_admin,
                 "is_voted" => $is_voted,
-                "can_vote" => $can_vote
+                "has_negative" => $has_negative,
+                "can_vote" => $can_vote,
             ], Response::HTTP_OK);
 
         } catch (\Exception $e) {
@@ -51,23 +53,9 @@ class LotteryController extends Controller
 
         DB::beginTransaction();
         try {
-
-            // if ($this->lotteryService->is_admin($user)){
-            //     DB::commit();
-            //     return response()->json(['message' => 'Admin can not vote'], Response::HTTP_BAD_REQUEST);
-            // }
-            // if ($this->lotteryService->is_voted($user)){
-            //     DB::commit();
-            //     return response()->json(['message' => 'Already voted'], Response::HTTP_BAD_REQUEST);
-            // }
-            // if ($this->lotteryService->achievements_count($user) < MIN_ACHIEVEMENTS){
-            //     DB::commit();
-            //     return response()->json(['message' => 'Achievements is not enough'], Response::HTTP_BAD_REQUEST);
-            // 
-
-            $message = $this->lotteryService->can_vote($user);
+            $message = $this->lotteryService->userStatus($user);
             $http_status = Response::HTTP_OK;
-            return $message;
+            
             if ($message == "OK"){
                 $this->lotteryService->vote($user, $voted_number);
             }else{

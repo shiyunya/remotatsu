@@ -23,30 +23,30 @@ class LotteryService{
     }
 
     public function has_negative($user){
-        //return $user->tasks;
-        //return Achievement::leftJoin('tasks','achievements.task_id','=','tasks.id');
-        return $user->achievements;//->join('tasks','achievements.task_id','=','tasks.id');
+        return $user->has_negative();
     }
 
-    public function can_vote($user){
+
+    public function userStatus($user){
+
         if ($this->is_admin($user))
             return "Admin can not vote";
+
         if ($this->is_voted($user))
             return "Already voted";
 
-        return $this->has_negative($user);
-
-        if ($this->has_negative($user))
+        if ($user->has_negative())
             return "You have negative check";
+
         if ($this->achievements_count($user) < MIN_ACHIEVEMENTS)
             return "Achievements are not enough";
         
         return "OK";
     }
 
-    // public function can_vote($user){
-    //     return (!$this->is_admin($user) && !$this->is_voted($user) && $this->achievements_count($user) >= MIN_ACHIEVEMENTS);
-    // }
+    public function can_vote($user){
+        return (!$this->is_admin($user) && !$this->is_voted($user) && !$user->has_negative() && $this->achievements_count($user) >= MIN_ACHIEVEMENTS);
+    }
 
     public function vote($user, $voted_number){
         $user->vote()->create(['voted_number' => $voted_number]);
