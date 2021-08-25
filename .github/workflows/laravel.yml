@@ -47,9 +47,8 @@ jobs:
 
 jobs:
 
-  //...
-
-  deploy:
+  //...deploy:
+    
     name: deploy
     runs-on: ubuntu-latest
     needs: test
