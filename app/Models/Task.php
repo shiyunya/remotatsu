@@ -22,6 +22,15 @@ class Task extends Model
         'difficulty_id'
     ];
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'is_negative' => 'boolean',
+    ];
+
     public function achievements()
     {
         return $this->hasMany(Achievement::class);

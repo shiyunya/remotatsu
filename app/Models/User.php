@@ -50,5 +50,22 @@ class User extends Authenticatable
     {
         return $this->hasOne(Vote::class);
     }
+
+    public function tasks()
+    {
+        return $this->hasManyThrough(Task::class, Achievement::class, 'user_id', 'task_id');
+    }
+
+    public function has_negative(){
+
+        $achievements = $this->achievements;
+
+        foreach($achievements as $achievement){
+            if ($achievement->task->is_negative){
+                return true;
+            }
+        }
+        return false;
+    }
     
 }

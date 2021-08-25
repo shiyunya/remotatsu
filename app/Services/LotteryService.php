@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Vote;
+use App\Models\Achievement;
 
 const MIN_ACHIEVEMENTS = 15;
 
@@ -21,8 +22,30 @@ class LotteryService{
         return $user->achievements()->count();
     }
 
+    public function has_negative($user){
+        return $user->has_negative();
+    }
+
+
+    public function userStatus($user){
+
+        if ($this->is_admin($user))
+            return "Admin can not vote";
+
+        if ($this->is_voted($user))
+            return "Already voted";
+
+        if ($user->has_negative())
+            return "You have negative check";
+
+        if ($this->achievements_count($user) < MIN_ACHIEVEMENTS)
+            return "Achievements are not enough";
+        
+        return "OK";
+    }
+
     public function can_vote($user){
-        return (!$this->is_admin($user) && !$this->is_voted($user) && $this->achievements_count($user) >= MIN_ACHIEVEMENTS);
+        return (!$this->is_admin($user) && !$this->is_voted($user) && !$user->has_negative() && $this->achievements_count($user) >= MIN_ACHIEVEMENTS);
     }
 
     public function vote($user, $voted_number){
