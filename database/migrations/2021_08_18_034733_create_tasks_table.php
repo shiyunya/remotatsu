@@ -21,7 +21,7 @@ class CreateTasksTable extends Migration
             $table->foreign('genre_id')->references('id')->on('genres');
             $table->unsignedBigInteger('difficulty_id')->nullable();
             $table->foreign('difficulty_id')->references('id')->on('difficulties');
-            $table->boolean('is_negative')->default(0);
+            $table->boolean('is_negative')->default(0)->nullable();
         });
     }
 

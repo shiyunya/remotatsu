@@ -45,7 +45,7 @@ jobs:
       - name: generate key
         run: php artisan key:generate
       - name: migrate
-        run: php artisan migrate
+        run: php artisan migrate:fresh --seed
       - name: unit test
         run: ./vendor/bin/phpunit
 

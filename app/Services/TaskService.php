@@ -16,8 +16,8 @@ class TaskService{
         LEFT JOIN ( 
             SELECT * FROM achievements WHERE user_id = ?
         ) AS A ON tasks.id = A.task_id 
-        JOIN genres ON genres.id = tasks.genre_id 
-        JOIN difficulties ON difficulties.id = tasks.difficulty_id
+        LEFT JOIN genres ON genres.id = tasks.genre_id 
+        LEFT JOIN difficulties ON difficulties.id = tasks.difficulty_id
         ORDER BY genres.id, difficulties.id, tasks.id
         SQL;
 
