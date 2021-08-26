@@ -55,7 +55,7 @@ class TaskController extends Controller
             $this->taskService->postTask($task_name, $description, $genre_id, $difficulty_id);
 
             DB::commit();
-            return response()->json(["message" => "OK"], Response::HTTP_BAD_REQUEST);
+            return response()->json(["message" => "OK"], Response::HTTP_OK);
 
         } catch (\Exception $e) {
 
