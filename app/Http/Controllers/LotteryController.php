@@ -29,14 +29,16 @@ class LotteryController extends Controller
             $is_admin = $this->lotteryService->is_admin($user);
             $is_voted = $this->lotteryService->is_voted($user);
             $has_negative = $this->lotteryService->has_negative($user);
+            $is_enough = $this->lotteryService->is_ecnough($user);
             $can_vote = $this->lotteryService->can_vote($user);
             DB::commit();
 
             return response()->json([
                 'is_admin' => $is_admin,
-                "is_voted" => $is_voted,
-                "has_negative" => $has_negative,
-                "can_vote" => $can_vote,
+                'is_voted' => $is_voted,
+                'has_negative' => $has_negative,
+                'is_enough' => $is_enough,
+                'can_vote' => $can_vote,
             ], Response::HTTP_OK);
 
         } catch (\Exception $e) {
@@ -91,10 +93,10 @@ class LotteryController extends Controller
             }
 
             $win_number = $win_vote->voted_number;
-            $winner_id = $this->lotteryService->winner_id($win_number);
+            $winner = $this->lotteryService->winner($win_number);
 
             DB::commit();
-            return response()->json(['user_id' => $winner_id, 'win_number' => $win_number], Response::HTTP_OK);
+            return response()->json(['winner' => $winner , 'win_number' => $win_number], Response::HTTP_OK);
 
         } catch (\Exception $e) {
 
