@@ -5,13 +5,13 @@ on:
     branches:
       - main
     
-  env:
-    AWS_REGION: ap-northeast-1
-    ECR_REPOSITORY: intern-202108/sh_suzuki-ecr
-    ECS_SERVICE: intern-202108-sh_suzuki-service
-    ECS_CLUSTER: intern-202108-cluster
-    ECS_TASK_DEFINITION: for_aws/task_definition.json
-    CONTAINER_NAME: Laravel
+env:
+  AWS_REGION: ap-northeast-1
+  ECR_REPOSITORY: intern-202108/sh_suzuki-ecr
+  ECS_SERVICE: intern-202108-sh_suzuki-service
+  ECS_CLUSTER: intern-202108-cluster
+  ECS_TASK_DEFINITION: for_aws/task_definition.json
+  CONTAINER_NAME: Laravel
 
 
 defaults:
