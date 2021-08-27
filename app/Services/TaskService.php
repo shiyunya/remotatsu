@@ -10,7 +10,7 @@ class TaskService{
     public function getTasks($user_id){
 
         $SQL = <<< SQL
-        SELECT tasks.id, tasks.task_name, tasks.description, genres.genre_name, difficulties.difficulty_name, 
+        SELECT tasks.id, tasks.task_name, tasks.description, genres.genre_name, difficulties.difficulty_name, tasks.is_negative, 
             CASE WHEN user_id IS NULL THEN 0 ELSE 1 END AS is_achieve 
         FROM tasks 
         LEFT JOIN ( 

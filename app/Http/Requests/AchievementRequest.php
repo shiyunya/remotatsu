@@ -15,7 +15,7 @@ class AchievementRequest extends FormRequest{
     public function rules(){
         return [
             'task_ids' => 'required',
-            'task_ids.*' => 'required|integer|distinct|min:1',
+            'task_ids.*' => 'required|integer|distinct|min:1|exists:tasks,id',
         ];
     }
 

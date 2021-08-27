@@ -18,8 +18,8 @@ class LotteryService{
         return $user->vote()->exists();
     }
 
-    public function achievements_count($user){
-        return $user->achievements()->count();
+    public function is_ecnough($user){
+        return $user->achievements()->count() >= MIN_ACHIEVEMENTS;
     }
 
     public function has_negative($user){
@@ -38,14 +38,14 @@ class LotteryService{
         if ($user->has_negative())
             return "You have negative check";
 
-        if ($this->achievements_count($user) < MIN_ACHIEVEMENTS)
+        if (!$this->is_ecnough($user))
             return "Achievements are not enough";
         
         return "OK";
     }
 
     public function can_vote($user){
-        return (!$this->is_admin($user) && !$this->is_voted($user) && !$user->has_negative() && $this->achievements_count($user) >= MIN_ACHIEVEMENTS);
+        return (!$this->is_admin($user) && !$this->is_voted($user) && !$user->has_negative() && $this->is_ecnough($user));
     }
 
     public function vote($user, $voted_number){
@@ -62,8 +62,8 @@ class LotteryService{
         return $win_vote;
     }
 
-    public function winner_id($win_number){
-        return Vote::where("voted_number", $win_number)->first()->user->id;
+    public function winner($win_number){
+        return Vote::where("voted_number", $win_number)->first()->user;
     }
-
+    
 }
