@@ -54,7 +54,7 @@
 - GET /api/tasks：タスク一覧取得
 - POST /api/admin/task：タスク登録
 - PUT /api/achievements：達成項目の更新
-###　宝くじ
+### 宝くじ
 - GET /api/user/lottery：宝くじに関する状態の取得
 - POST /api/vote：宝くじに応募
 - GET /api/winner：当選者、当選番号確認
